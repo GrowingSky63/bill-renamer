@@ -5,7 +5,6 @@ from util import (
 	get_document_words,
 	get_words
 )
-# =)
 
 def get_base_file_path(file_path: str, code_rect: tuple[float, float, float, float], ref_month_rect: tuple[float, float, float, float]) -> str:
 	words = get_document_words(file_path)
