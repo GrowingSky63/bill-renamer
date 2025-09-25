@@ -30,6 +30,13 @@ def setup_logger():
 		datefmt="%Y-%m-%d %H:%M:%S"
 	)
 
+def get_numeric_month(month: str):
+	month = month.lower()
+	if month not in MONTHS:
+		for m in MONTHS:
+			if m.startswith(month):
+				return MONTHS[m]
+	return MONTHS[month]
 
 def get_irregular_file_paths(folder_path: str = '.', re_pattern: str = r'^\d{4}-\d{2}__\d{3}\.pdf$') -> list[str]:
 	folder_path = os.path.normpath(folder_path)
@@ -53,17 +60,20 @@ def find_page(file_path, filter: str) -> int:
 		logging.error(f'Erro ao abrir o arquivo "{file_path}": {e}')
 		return -1
 	
-def get_words(words, limits) -> list[Word]:
+def get_words(words: list[Word], limits: tuple[float, float, float, float], regex: str | None = None) -> list[Word]:
 	rect = fitz.Rect(*limits)
-	words = [w for w in words if fitz.Rect((w.x0, w.y0, w.x1, w.y1)).intersects(rect)]
+	if regex:
+		regex_compiled = re.compile(regex)
+	words = [w for w in words if fitz.Rect((w.x0, w.y0, w.x1, w.y1)).intersects(rect) and (regex == None or re.match(regex_compiled, w.text))]
 	return words
 
 def rename_file(file_path: str, new_file_path: str):
 	try:
 		os.rename(file_path, new_file_path)
 	except FileExistsError:
-		logging.warning(f'Arquivo "{os.path.basename(file_path)}" já existe como "{os.path.basename(new_file_path)}".')
-		os.remove(file_path)
+		os.remove(new_file_path)
+		os.rename(file_path, new_file_path)
+		logging.warning(f'Arquivo "{os.path.basename(file_path)}" já existe como "{os.path.basename(new_file_path)}", substituindo...')
 
 def get_document_words(file_path: str, page: int=0) -> list[Word]:
 	with fitz.open(file_path, filetype="pdf") as file:
