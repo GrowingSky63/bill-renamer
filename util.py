@@ -60,11 +60,11 @@ def find_page(file_path, filter: str) -> int:
 		logging.error(f'Erro ao abrir o arquivo "{file_path}": {e}')
 		return -1
 	
-def get_words(words: list[Word], limits: tuple[float, float, float, float], regex: str | None = None) -> list[Word]:
+def get_words(words: list[Word], limits: tuple[float, float, float, float], regex: str | re.Pattern[str] | None = None) -> list[Word]:
 	rect = fitz.Rect(*limits)
-	if regex:
-		regex_compiled = re.compile(regex)
-	words = [w for w in words if fitz.Rect((w.x0, w.y0, w.x1, w.y1)).intersects(rect) and (regex == None or re.match(regex_compiled, w.text))]
+	if isinstance(regex, str):
+		regex = re.compile(regex)
+	words = [w for w in words if fitz.Rect((w.x0, w.y0, w.x1, w.y1)).intersects(rect) and (regex == None or re.match(regex, w.text))]
 	return words
 
 def rename_file(file_path: str, new_file_path: str):

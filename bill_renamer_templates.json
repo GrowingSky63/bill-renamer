@@ -1,0 +1,55 @@
+{
+  "templates": {
+    "copel" : {
+      "variant_1": {
+        "code_rect":      {"x0": 226, "y0": 138, "x1": 317, "y1": 155},
+        "ref_month_rect": {"x0": 0, "y0": 212, "x1": 90, "y1": 231},
+        "code_regex": null,
+        "ref_month_regex": null,
+        "page_filter": "Copel Distribuição S.A.",
+        "search_paths": [
+          "//172.25.0.250/Fontesul/OEM/database/pachalki/faturas",
+          "//172.25.0.250/Fontesul/OEM/database/janines/faturas",
+          "//172.25.0.250/Fontesul/OEM/database/saoSebastiao/faturas",
+          "//172.25.0.250/Fontesul/OEM/database/aurora/faturas",
+          "//172.25.0.250/Fontesul/OEM/database/tocantins/faturas",
+          "//172.25.0.250/Fontesul/OEM/database/tioMucufa/faturas",
+          "//172.25.0.250/Fontesul/OEM/database/kossatz/faturas",
+          "//172.25.0.250/Fontesul/OEM/database/pauFurado/faturas"
+        ]
+      }
+    },
+    "energisa": {
+      "variant_1": {
+        "code_rect":      {"x0": 235, "y0": 185, "x1": 325, "y1": 208},
+        "ref_month_rect": {"x0": 45, "y0": 245, "x1": 145, "y1": 275},
+        "code_regex": "\\d{2}/\\d{3,10}-\\d",
+        "ref_month_regex": null,
+        "page_filter": "ENERGISA MATO GROSSO DO SUL - DISTR. DE ENERGIA S.A.",
+        "search_paths": [
+          "//172.25.0.250/Fontesul/OEM/database/cassems/faturas2"
+        ]
+      },
+      "variant_2": {
+        "code_rect":      {"x0": 355, "y0": 87, "x1": 510, "y1": 104},
+        "ref_month_rect": {"x0": 62, "y0": 143, "x1": 121, "y1": 163},
+        "code_regex": "\\d{2}/\\d{3,10}-\\d",
+        "ref_month_regex": null,
+        "page_filter": "ENERGISA MATO GROSSO DO SUL - DISTR. DE ENERGIA S.A.",
+        "search_paths": [
+          "//172.25.0.250/Fontesul/OEM/database/cassems/faturas2"
+        ]
+      },
+      "variant_3": {
+        "code_rect":      {"x0": 355, "y0": 87, "x1": 268, "y1": 130},
+        "ref_month_rect": {"x0": 35, "y0": 150, "x1": 75, "y1": 162},
+        "code_regex": "\\d{2}/\\d{3,10}-\\d",
+        "ref_month_regex": null,
+        "page_filter": "ENERGISA MATO GROSSO DO SUL - DISTR. DE ENERGIA S.A.",
+        "search_paths": [
+          "//172.25.0.250/Fontesul/OEM/database/cassems/faturas2"
+        ]
+      }
+    }
+  }
+}
